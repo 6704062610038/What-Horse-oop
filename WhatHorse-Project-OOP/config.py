@@ -1,8 +1,4 @@
-"""Central configuration for the What Horse Project.
-
-ทุกค่าคงที่ (path, threshold, ชื่อคลาส) ถูกรวมไว้ในอ็อบเจ็กต์เดียว
-แทนที่จะกระจายเป็นตัวแปร global ทั่วไฟล์เหมือนเวอร์ชันเดิม
-"""
+"""Central configuration for the What Horse Project."""
 
 from __future__ import annotations
 
