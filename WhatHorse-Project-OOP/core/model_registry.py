@@ -1,10 +1,4 @@
-"""ตัวโหลดโมเดลพร้อมแคช.
-
-เวอร์ชันเดิมมี `get_ml_model()` ที่ประกาศไว้แต่ "ไม่เคยถูกเรียกใช้"
-หน้า ML Test จึงเปิดไฟล์ .pkl ใหม่ทุกครั้งที่กดปุ่ม
-คลาสนี้รวมการโหลดไว้ที่เดียว และแคชด้วย ``st.cache_resource``
-โดยใช้ path เป็น cache key ทำให้แต่ละโมเดลถูกโหลดจากดิสก์เพียงครั้งเดียว
-"""
+"""ตัวโหลดโมเดลพร้อมแคช."""
 
 from __future__ import annotations
 
@@ -17,7 +11,7 @@ from .exceptions import ModelLoadError, ModelNotFoundError
 
 
 class ModelRegistry:
-    """Utility class สำหรับโหลด (และแคช) ไฟล์โมเดลแต่ละชนิด."""
+    """Utility class สำหรับโหลดไฟล์โมเดลแต่ละชนิด."""
 
     @staticmethod
     @st.cache_resource(show_spinner="Loading feature model...")
