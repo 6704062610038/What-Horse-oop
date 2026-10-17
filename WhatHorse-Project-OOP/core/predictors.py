@@ -1,6 +1,6 @@
-"""ชั้นโมเดล (Model layer) — หัวใจของการทำ OOP ในโปรเจกต์นี้.
+"""ชั้นโมเดล (Model layer) 
 
-* ``BasePredictor``  : abstract base class กำหนด "สัญญา" ร่วมของตัวทำนายทุกตัว
+* ``BasePredictor``  : abstract base class กำหนดสัญญาร่วมของตัวทำนายทุกตัว
                        และคุม flow ด้วย Template Method ``predict()``
 * ``FeaturePredictor``: ทำนายจากคุณลักษณะ (Ensemble Voting Classifier)
 * ``ImagePredictor``  : ทำนายจากรูปภาพ (MobileNetV2)
