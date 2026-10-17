@@ -1,4 +1,4 @@
-"""Exception hierarchy ของโปรเจกต์ (ใช้แทน bare `except:` ในโค้ดเดิม)."""
+"""Exception hierarchy ของโปรเจกต์ """
 
 
 class WhatHorseError(Exception):
