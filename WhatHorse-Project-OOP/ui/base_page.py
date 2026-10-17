@@ -10,16 +10,14 @@ import streamlit as st
 from config import AppConfig
 from core.prediction import PredictionResult
 
-if TYPE_CHECKING:  # หลีกเลี่ยง circular import ตอน runtime
+if TYPE_CHECKING:
     from .router import Router
 
 
 class BasePage(ABC):
-    """หน้าเว็บหนึ่งหน้า — subclass ต้องกำหนด ``name`` และเขียน ``render()``."""
 
     #: คีย์ที่ใช้ใน session state (ต้องไม่ซ้ำกัน)
     name: str = "Page"
-    #: หัวข้อใหญ่ที่แสดงบนสุดของหน้า
     title: str = ""
 
     def __init__(self, router: "Router", config: AppConfig) -> None:
@@ -32,14 +30,12 @@ class BasePage(ABC):
         """เนื้อหาเฉพาะของแต่ละหน้า."""
 
     def render(self) -> None:
-        """Template Method: หัวข้อ → เนื้อหา → แถบนำทางท้ายหน้า."""
         if self.title:
             st.title(self.title)
         self.render_body()
         self.render_footer()
 
     def render_footer(self) -> None:
-        """ค่าเริ่มต้นคือไม่มีแถบท้ายหน้า (subclass override ได้)."""
 
     # ---------- Helper ที่ทุกหน้าใช้ร่วมกัน ----------
     def _spacer(self, times: int = 1) -> None:
@@ -48,7 +44,7 @@ class BasePage(ABC):
 
     def _nav_button(self, label: str, target: str, *, container=None,
                     use_container_width: bool = True) -> None:
-        """ปุ่มนำทางหนึ่งปุ่ม (รวมโค้ดที่เดิมเขียนซ้ำหลายที่)."""
+        """ปุ่มนำทางหนึ่งปุ่ม (รวมโค้ดที่เดิมเขียนซ้ำหลายที่)"""
         holder = container if container is not None else st
         if holder.button(label, key=f"{self.name}->{target}",
                          use_container_width=use_container_width):
@@ -56,7 +52,7 @@ class BasePage(ABC):
 
     def _render_bottom_nav(self, left_label: str, left_target: str,
                            right_label: str, right_target: str) -> None:
-        """แถบปุ่ม 2 ปุ่มท้ายหน้า (เดิม copy-paste อยู่ในหน้า ML Test และ NN Test)."""
+        """แถบปุ่ม 2 ปุ่มท้ายหน้า"""
         st.divider()
         _, col_left, _, col_right, _ = st.columns([1, 0.8, 0.2, 0.8, 1])
         self._nav_button(left_label, left_target, container=col_left)
@@ -76,7 +72,6 @@ class BasePage(ABC):
 
 
 class InfoPage(BasePage):
-    """หน้าเนื้อหาล้วน ๆ ที่จบด้วยปุ่ม 'ไปหน้าทดสอบ' หนึ่งปุ่มตรงกลาง."""
 
     #: หน้าถัดไปที่ปุ่มกลางจะพาไป
     next_page: Optional[str] = None
