@@ -1,11 +1,4 @@
-"""What Horse Project — จุดเริ่มต้นของแอป (Streamlit entry point).
-
-ไฟล์นี้ทำหน้าที่เดียวคือ "ประกอบร่าง" อ็อบเจ็กต์ต่าง ๆ เข้าด้วยกัน
-(config → predictors → pages → router) แล้วสั่งให้แอปทำงาน
-ตรรกะจริงอยู่ในแพ็กเกจ ``core`` (โมเดล) และ ``ui`` (หน้าเว็บ)
-
-รันด้วย:  streamlit run app.py
-"""
+"""What Horse Project — จุดเริ่มต้นของแอป (Streamlit entry point)."""
 
 from __future__ import annotations
 
@@ -20,7 +13,6 @@ from ui.router import Router
 
 
 class WhatHorseApp:
-    """คลาสหลักของแอปพลิเคชัน (Composition: ถือ config, predictors และ router)."""
 
     def __init__(self, config: AppConfig = CONFIG) -> None:
         self._config = config
@@ -29,7 +21,6 @@ class WhatHorseApp:
         self._image_predictor = self._build_image_predictor()
         self._router = self._build_router()
 
-    # ---------- ขั้นตอนประกอบร่าง ----------
     def _configure_page(self) -> None:
         st.set_page_config(page_title=self._config.page_title,
                            layout=self._config.layout)
@@ -58,7 +49,6 @@ class WhatHorseApp:
         router.register(NNTestPage(router, self._config, self._image_predictor))
         return router
 
-    # ---------- รันแอป ----------
     def run(self) -> None:
         self._router.render()
 
